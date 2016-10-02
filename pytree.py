@@ -3,10 +3,19 @@ import sys
 import os
 import string
 
+intset = set('1234567890')
+
+
+def func(x):
+    x = x.lower()
+    for (i, key) in enumerate(x):
+        if key in string.ascii_lowercase or key in intset:
+            return x[i:]
+
 
 def dfsTree(curPath, prefix):
     files = [x for x in os.listdir(curPath) if x[0] != '.']
-    files = sorted(files)
+    files = sorted(files, key=func)
     dirN, fileN = 0, 0
     for i, fname in enumerate(files):
         if i < len(files) - 1:
